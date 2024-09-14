@@ -39,7 +39,7 @@ h1 {
 .container {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 600px;
   /* Adjust this to your desired width */
 }
 
@@ -56,42 +56,48 @@ h3 {
   /* Space between the h3 and other elements */
 }
 
-/* Box styling */
 .box {
-  background-color: lightgrey;
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  /* Ensure padding is included in the width */
+  position: relative;
+  /* Positioning context for child elements */
+  width: 600px;
+  /* Width of the box */
+  padding: 20px;
+  /* Space inside the box */
+  border: 2px solid #333;
+  /* Border around the box */
+  border-radius: 8px;
+  /* Rounded corners */
+  background-color: #f9f9f9;
+  /* Background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  text-align: center;
+  /* Center-align text */
+  margin-top: 20px;
 }
 
-/* Style for form elements inside the box */
-.box label {
-  display: block;
-  margin: 5px 0;
-  /* Space between labels and inputs */
+/* Style for the positioned text */
+.box-text {
+  position: absolute;
+  /* Position relative to the .box container */
+  top: -15px;
+  /* Move text above the box */
+  left: 20px;
+  /* Align text to the left edge */
+  background-color: #f9f9f9;
+  /* Match the background color of the box */
+  font-size: 16px;
+  /* Font size */
+  font-weight: bold;
+  /* Font weight */
 }
 
-.box input {
-  width: calc(100% - 22px);
-  /* Adjust width to account for padding and borders */
-  padding: 10px;
-  margin-bottom: 10px;
-  /* Space between inputs */
-  box-sizing: border-box;
-  /* Ensure padding is included in the width */
+/* Style for the box content */
+.box-content {
+  margin-top: 5px;
+  /* Space to ensure the content does not overlap with the positioned text */
 }
 
-.box button {
-  background-color: blue;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  cursor: pointer;
-}
 
 button:hover {
   border-color: #646cff;

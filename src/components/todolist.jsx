@@ -22,20 +22,28 @@ function Todolist() {
         <>
             <h3>Simple Todolist</h3>
             {/* set state for the todo input */}
-            <label>Description: </label>
-            <input
-                placeholder="Type description"
-                value={todo.description}
-                onChange={event => setTodo({ ...todo, description: event.target.value })}
-            />
-            <label>Date: </label>
-            <input
-                placeholder="Type due date"
-                value={todo.duedate}
-                onChange={event => setTodo({ ...todo, duedate: event.target.value })}
-            />
+            <div className="box">
+                <div className="box-content">
+                    <div className="box-text">Add Todo:</div>
 
-            <button onClick={handleAdd}>Add Todo</button>
+                    <label>Description: </label>
+                    <input
+                        placeholder="Type description"
+                        value={todo.description}
+                        onChange={event => setTodo({ ...todo, description: event.target.value })}
+                    />
+
+                    <label>Date: </label>
+                    <input
+                        placeholder="Type due date"
+                        value={todo.duedate}
+                        onChange={event => setTodo({ ...todo, duedate: event.target.value })}
+                    />
+
+                    <button onClick={handleAdd}>Add Todo</button>
+
+                </div>
+            </div>
 
             {/* list the todo extract from todos array, use index as unique identifier */}
             <table>
