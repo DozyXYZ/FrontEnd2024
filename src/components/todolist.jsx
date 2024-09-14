@@ -20,15 +20,17 @@ function Todolist() {
 
     return (
         <>
-            <h3>My Todos</h3>
+            <h3>Simple Todolist</h3>
             {/* set state for the todo input */}
+            <label>Description: </label>
             <input
-                placeholder="Description"
+                placeholder="Type description"
                 value={todo.description}
                 onChange={event => setTodo({ ...todo, description: event.target.value })}
             />
+            <label>Date: </label>
             <input
-                placeholder="Due Date"
+                placeholder="Type due date"
                 value={todo.duedate}
                 onChange={event => setTodo({ ...todo, duedate: event.target.value })}
             />
@@ -38,11 +40,12 @@ function Todolist() {
             {/* list the todo extract from todos array, use index as unique identifier */}
             <table>
                 <tbody>
+                    <tr><th>Due Date</th><th>Description</th></tr>
                     {
                         todos.map((todo, index) =>
                             <tr key={index}>
-                                <td>{todo.description}</td>
                                 <td>{todo.duedate}</td>
+                                <td>{todo.description}</td>
                             </tr>
                         )
                     }
