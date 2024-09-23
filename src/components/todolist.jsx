@@ -1,10 +1,21 @@
-import { useState } from "react"; // import useState
+import { useState, useRef } from "react"; // import useState
+
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
 
 function Todolist() {
     // define state for elements and an array to contain those elements
     // todo is an object with 2 keys description and duedate
-    const [todo, setTodo] = useState({ description: "", duedate: "" });
+    const [todo, setTodo] = useState({ description: "", duedate: "", priority: "" });
     const [todos, setTodos] = useState([]);
+    const gridRef = useRef();
+
+    const [colDefs, setColDefs] = useState([
+        { field: "description", filter: true, floatingFilter: true },
+        { field: "priority", filter: true, floatingFilter: true },
+        { field: "duedate", filter: true, floatingFilter: true },
+    ]);
 
     // function to handle the "Add Todo" button
     // will send an alert if one or both input field is empty
@@ -14,9 +25,18 @@ function Todolist() {
             alert("Type something first");
         } else {
             setTodos([todo, ...todos]);
-            setTodo({ description: "", duedate: "" });
+            setTodo({ description: "", duedate: "", priority: "" });
         }
-    }
+    };
+
+    const handleDelete = () => {
+        if (gridRef.current.getSelectedNodes().length > 0) {
+            setTodos(todos.filter((todo, index) =>
+                index != gridRef.current.getSelectedNodes()[0].id))
+        } else {
+            alert('Select a row first!')
+        }
+    };
 
     return (
         <>
@@ -33,32 +53,36 @@ function Todolist() {
                         onChange={event => setTodo({ ...todo, description: event.target.value })}
                     />
 
+                    <label>Priority: </label>
+                    <input
+                        placeholder="Type description"
+                        value={todo.priority}
+                        onChange={event => setTodo({ ...todo, priority: event.target.value })}
+                    />
+
                     <label>Date: </label>
                     <input
-                        placeholder="Type due date"
+                        type="date"
                         value={todo.duedate}
                         onChange={event => setTodo({ ...todo, duedate: event.target.value })}
                     />
 
                     <button onClick={handleAdd}>Add Todo</button>
+                    <button onClick={handleDelete}>Delete</button>
+
+                    <div className='ag-theme-material' style={{ height: 500, width: '100%' }}>
+                        <AgGridReact
+                            ref={gridRef}
+                            onGridReady={params => gridRef.current = params.api}
+                            rowData={todos}
+                            columnDefs={colDefs}
+                            rowSelection="single"
+                        />
+                    </div>
 
                 </div>
             </div>
 
-            {/* list the todo extract from todos array, use index as unique identifier */}
-            <table>
-                <tbody>
-                    <tr><th>Due Date</th><th>Description</th></tr>
-                    {
-                        todos.map((todo, index) =>
-                            <tr key={index}>
-                                <td>{todo.duedate}</td>
-                                <td>{todo.description}</td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
         </>
     );
 }

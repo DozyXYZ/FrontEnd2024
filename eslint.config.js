@@ -33,6 +33,7 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/prop-types': 0, // don't check the React / type to remove the warning
     },
   },
 ]

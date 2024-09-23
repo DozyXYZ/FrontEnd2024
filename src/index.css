@@ -59,7 +59,7 @@ h3 {
 .box {
   position: relative;
   /* Positioning context for child elements */
-  width: 600px;
+  width: 800px;
   /* Width of the box */
   padding: 20px;
   /* Space inside the box */
