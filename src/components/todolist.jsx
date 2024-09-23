@@ -3,7 +3,7 @@ import { useState } from "react"; // import useState
 function Todolist() {
     // define state for elements and an array to contain those elements
     // todo is an object with 2 keys description and duedate
-    const [todo, setTodo] = useState({ description: "", duedate: "", priority: "" });
+    const [todo, setTodo] = useState({ description: "", duedate: "" });
     const [todos, setTodos] = useState([]);
 
     // function to handle the "Add Todo" button
@@ -14,7 +14,7 @@ function Todolist() {
             alert("Type something first");
         } else {
             setTodos([todo, ...todos]);
-            setTodo({ description: "", duedate: "", priority: "" });
+            setTodo({ description: "", duedate: "" });
         }
     }
 
@@ -40,13 +40,6 @@ function Todolist() {
                         onChange={event => setTodo({ ...todo, description: event.target.value })}
                     />
 
-                    <label>Priority: </label>
-                    <input
-                        placeholder="Type description"
-                        value={todo.priority}
-                        onChange={event => setTodo({ ...todo, priority: event.target.value })}
-                    />
-
                     <label>Date: </label>
                     <input
                         type="date"
@@ -55,8 +48,6 @@ function Todolist() {
                     />
 
                     <button onClick={handleAdd}>Add Todo</button>
-
-                    {/* need to render the todos, handleDelete to the todotable <Todotable todos={todos} handleDelete={handleDelete} /> */}
 
                     <table>
                         <tbody>
