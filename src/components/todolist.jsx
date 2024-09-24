@@ -13,7 +13,10 @@ function Todolist() {
 
     const [colDefs, setColDefs] = useState([
         { field: "description", filter: true, floatingFilter: true },
-        { field: "priority", filter: true, floatingFilter: true },
+        {
+            field: "priority", filter: true, floatingFilter: true,
+            cellStyle: params => params.value === "High" ? { color: "red" } : { color: "black" }
+        },
         { field: "duedate", filter: true, floatingFilter: true },
     ]);
 
@@ -46,21 +49,18 @@ function Todolist() {
                 <div className="box-content">
                     <div className="box-text">Add Todo:</div>
 
-                    <label>Description: </label>
                     <input
-                        placeholder="Type description"
+                        placeholder="Description"
                         value={todo.description}
                         onChange={event => setTodo({ ...todo, description: event.target.value })}
                     />
 
-                    <label>Priority: </label>
                     <input
-                        placeholder="Type description"
+                        placeholder="Priority"
                         value={todo.priority}
                         onChange={event => setTodo({ ...todo, priority: event.target.value })}
                     />
 
-                    <label>Date: </label>
                     <input
                         type="date"
                         value={todo.duedate}
