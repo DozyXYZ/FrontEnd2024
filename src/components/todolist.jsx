@@ -66,6 +66,13 @@ function Todolist() {
         }
     };
 
+    const handleDelete = (row) => {
+        console.log("Delete: " + row);
+        // Boolean value to filter the row, the delete row will be exluded from the new array
+        // row index 1 match index 1, row != index is false, row 1 will be excluded from the new array
+        setTodos(todos.filter((_, index) => row != index));
+    }
+
     return (
         <>
 
@@ -83,6 +90,7 @@ function Todolist() {
                     onChange={event => setTodo({ ...todo, description: event.target.value })}
                 />
 
+
                 <TextField
                     label="Priority"
                     value={todo.priority}
@@ -96,6 +104,7 @@ function Todolist() {
                         value={selectedDate}
                         onChange={handleDateChange}
                         format="DD/MM/YYYY"
+
                     />
                 </LocalizationProvider>
 
@@ -119,6 +128,7 @@ function Todolist() {
                     onClick={handleDelete}>Delete
                 </Button>
 
+
             </Stack>
             <div className='ag-theme-material' style={{ height: 500, width: '100%' }}>
                 <AgGridReact
@@ -128,6 +138,7 @@ function Todolist() {
                     columnDefs={colDefs}
                     rowSelection="single"
                 />
+
             </div>
 
         </>

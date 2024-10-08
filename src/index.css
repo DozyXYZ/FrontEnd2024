@@ -39,7 +39,7 @@ h1 {
 .container {
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 1000px;
   /* Adjust this to your desired width */
 }
 
